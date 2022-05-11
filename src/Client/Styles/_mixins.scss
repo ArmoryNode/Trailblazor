@@ -1,0 +1,19 @@
+﻿@import "_variables";
+
+@mixin transition-for($property) {
+    transition-timing-function: $transition-timing-function;
+    transition-duration: $transition-duration;
+    transition-property: $property;
+}
+
+@mixin fast-transition-for($property) {
+    transition-timing-function: $transition-timing-function;
+    transition-duration: calc($transition-duration * 2);
+    transition-property: $property;
+}
+
+@mixin slow-transition-for($property) {
+    transition-timing-function: $transition-timing-function;
+    transition-duration: calc($transition-duration / 2);
+    transition-property: $property;
+}

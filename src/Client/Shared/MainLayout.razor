@@ -1,18 +1,43 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
+<div id="wrapper">
+    <nav id="sidebar">
+        <a id="siteTitle" href="/">
+            <i aria-hidden="true" class="fa-duotone fa-person-hiking fa-3x"></i>
+            <span>Trailblazor</span>
+        </a>
+        <ul class="sidebar-items">
+            <li class="sidebar-item">
+                <NavLink href="" Match="NavLinkMatch.All">
+                    <div><i class="fa-solid fa-fw fa-home fa-lg"></i><span>Home</span></div>
+                </NavLink>
+            </li>
 
-    <main>
-        <div class="top-row px-4 auth">
-            <LoginDisplay />
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+            <li class="sidebar-item">
+                <NavLink href="counter">
+                    <div><i class="fa-solid fa-fw fa-abacus fa-lg"></i><span>Counter</span></div>
+                </NavLink>
+            </li>
+        </ul>
+        <div class="sidebar-footer">
+            <AuthorizeView>
+                <Authorized>
+                    <button class="sign-out-button btn btn-link"><i class="fa-regular fa-fw fa-power-off"></i><span>Sign out</span></button>
+                </Authorized>
+                <NotAuthorized>
+                    <button class="sign-out-button btn btn-link"><i class="fa-regular fa-fw fa-power-off"></i><span>Sign out</span></button>
+                </NotAuthorized>
+            </AuthorizeView>
         </div>
-
-        <article class="content px-4">
-            @Body
-        </article>
+    </nav>
+    <div id="topbar">
+        <div class="profile-container">
+            <div class="profile-circle">
+                <img alt="Profile Image" src="https://avatars.githubusercontent.com/u/22787155?v=4" />
+            </div>
+        </div>
+    </div>
+    <main id="content">
+        @Body
     </main>
 </div>
