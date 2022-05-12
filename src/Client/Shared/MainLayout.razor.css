@@ -110,16 +110,16 @@
   margin-bottom: 50px;
   align-items: center;
 }
-#wrapper #sidebar .sidebar-footer button.sign-out-button {
+#wrapper #sidebar .sidebar-footer button.sign-out-button, #wrapper #sidebar .sidebar-footer a.sign-in-link {
   color: #b0b4b7;
   text-decoration: none;
 }
-#wrapper #sidebar .sidebar-footer button.sign-out-button span {
+#wrapper #sidebar .sidebar-footer button.sign-out-button span, #wrapper #sidebar .sidebar-footer a.sign-in-link span {
   margin-left: 8px;
   font-weight: 700;
   font-size: 20px;
 }
-#wrapper #sidebar .sidebar-footer button.sign-out-button:hover {
+#wrapper #sidebar .sidebar-footer button.sign-out-button:hover, #wrapper #sidebar .sidebar-footer a.sign-in-link:hover {
   color: #cbcdcf;
 }
 #wrapper #topbar {

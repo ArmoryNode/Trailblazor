@@ -1,10 +1,16 @@
+using IdentityModel;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.OAuth;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using Trailblazor.Server.Data;
 using Trailblazor.Server.Infrastructure;
 using Trailblazor.Server.Models;
+
+using static Trailblazor.Server.Infrastructure.Constants;
+using static Trailblazor.Server.Infrastructure.Constants.Authentication;
+using static Trailblazor.Shared.Infrastructure.Authentication;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,10 +29,35 @@ builder.Services.AddIdentityServer()
     .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
 
 builder.Services.AddAuthentication()
-    .AddIdentityServerJwt();
+    .AddIdentityServerJwt()
+    .AddGoogle(googleOptions =>
+    {
+        ConfigureExternalProvider(builder, googleOptions, ExternalProviders.Google);
+
+        // Map inbound user claims https://docs.microsoft.com/en-us/aspnet/core/security/authentication/social/additional-claims#map-user-data-keys-and-create-claims
+        googleOptions.ClaimActions.MapJsonKey(CustomClaimTypes.Image, JwtClaimTypes.Picture, "url");
+
+        googleOptions.SaveTokens = true;
+    })
+    .AddMicrosoftAccount(microsoftOptions =>
+    {
+        ConfigureExternalProvider(builder, microsoftOptions, ExternalProviders.Microsoft);
+
+        microsoftOptions.ClaimActions.MapJsonKey(CustomClaimTypes.Image, JwtClaimTypes.Picture, "url");
+
+        microsoftOptions.SaveTokens = true;
+
+        microsoftOptions.Events.OnTicketReceived += (TicketReceivedContext context) =>
+        {
+            var foo = context;
+            return Task.CompletedTask;
+        };
+    });
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
@@ -60,3 +91,12 @@ app.MapControllers();
 app.MapFallbackToFile("index.html");
 
 app.Run();
+
+static void ConfigureExternalProvider(WebApplicationBuilder builder, OAuthOptions options, string provider)
+{
+    var authenticationSection = builder.Configuration.GetSection(nameof(Authentication))
+                                                     .GetSection(provider);
+
+    options.ClientId = authenticationSection.GetValue<string>(Credentials.ClientId);
+    options.ClientSecret = authenticationSection.GetValue<string>(Credentials.ClientSecret);
+}

@@ -1,4 +1,8 @@
-﻿@inherits LayoutComponentBase
+﻿@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+
+@inherits LayoutComponentBase
+@inject NavigationManager NavManager
+@inject SignOutSessionStateManager SignOutManager
 
 <div id="wrapper">
     <nav id="sidebar">
@@ -22,10 +26,10 @@
         <div class="sidebar-footer">
             <AuthorizeView>
                 <Authorized>
-                    <button class="sign-out-button btn btn-link"><i class="fa-regular fa-fw fa-power-off"></i><span>Sign out</span></button>
+                    <button @onclick="BeginSignOut" class="sign-out-button btn btn-link"><i class="fa-regular fa-fw fa-power-off"></i><span>Sign out</span></button>
                 </Authorized>
                 <NotAuthorized>
-                    <button class="sign-out-button btn btn-link"><i class="fa-regular fa-fw fa-power-off"></i><span>Sign out</span></button>
+                    <a href="/authentication/login" class="sign-in-link btn btn-link"><i class="fa-solid fa-fw fa-right-to-bracket"></i><span>Sign in</span></a>
                 </NotAuthorized>
             </AuthorizeView>
         </div>
@@ -41,3 +45,13 @@
         @Body
     </main>
 </div>
+
+@code {
+    // This is required because we need to set the state before logging out.
+    // https://docs.microsoft.com/en-us/aspnet/core/blazor/security/webassembly/hosted-with-identity-server?view=aspnetcore-6.0&tabs=visual-studio#logindisplay-component
+    protected async Task BeginSignOut(MouseEventArgs args)
+    {
+        await SignOutManager.SetSignOutState();
+        NavManager.NavigateTo("authentication/logout");
+    }
+}
