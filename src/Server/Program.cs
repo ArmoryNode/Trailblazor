@@ -46,12 +46,6 @@ builder.Services.AddAuthentication()
         microsoftOptions.ClaimActions.MapJsonKey(CustomClaimTypes.Image, JwtClaimTypes.Picture, "url");
 
         microsoftOptions.SaveTokens = true;
-
-        microsoftOptions.Events.OnTicketReceived += (TicketReceivedContext context) =>
-        {
-            var foo = context;
-            return Task.CompletedTask;
-        };
     });
 
 builder.Services.AddControllersWithViews();
