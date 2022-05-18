@@ -30,7 +30,7 @@
   width: 100vw;
   color: var(--text-color);
   background-color: var(--background-color);
-  font-family: "Nunito", sans-serif;
+  font-family: "Open Sans", sans-serif;
   grid-template-areas: "sidebar topbar topbar" "sidebar content content";
   grid-template-columns: 300px auto;
   grid-template-rows: 70px auto;
