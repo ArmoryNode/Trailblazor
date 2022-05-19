@@ -3,8 +3,8 @@
   "short_name": "Trailblazor",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#03173d",
+  "background_color": "#269cff", // This is taken from the $blue variable in "_variables.scss"
+  "theme_color": "#1d1e22", // This is taken from the $black variable in "_variables.scss"
   "prefer_related_applications": false,
   "icons": [
     {
