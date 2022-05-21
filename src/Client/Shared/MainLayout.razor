@@ -1,8 +1,12 @@
 ﻿@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using System.Security.Claims
+@using System.Security.Principal
+@using Trailblazor.Shared.Infrastructure
 
 @inherits LayoutComponentBase
 @inject NavigationManager NavManager
 @inject SignOutSessionStateManager SignOutManager
+@inject AuthenticationStateProvider AuthProvider
 
 <div id="wrapper">
     <nav id="sidebar">
@@ -37,7 +41,21 @@
     <div id="topbar">
         <div class="profile-container">
             <div class="profile-circle">
-                <img alt="Profile Image" src="https://avatars.githubusercontent.com/u/22787155?v=4" />
+                <AuthorizeView>
+                    <Authorized>
+                        @if (UserHasImage)
+                        {
+                            <img alt="profile image" src="@User?.Image()" />
+                        }
+                        else
+                        {
+                            <img alt="placeholder profile image" src="/img/unauthenticated.svg" />
+                        }
+                    </Authorized>
+                    <NotAuthorized>
+                        <img alt="placeholder profile image" src="/img/unauthenticated.svg" />
+                    </NotAuthorized>
+                </AuthorizeView>
             </div>
         </div>
     </div>
@@ -47,6 +65,35 @@
 </div>
 
 @code {
+    private ClaimsPrincipal? _user;
+    private ClaimsPrincipal? User
+    {
+        get => _user;
+        set
+        {
+            _user = value;
+            StateHasChanged();
+        }
+    }
+
+    private bool UserHasImage
+        => User is ClaimsPrincipal user
+        && user.Identity is IIdentity identity
+        && !string.IsNullOrWhiteSpace(user.Image());
+
+    private async Task OnAuthStateChanged(Task<AuthenticationState> authenticationStateTask)
+    {
+        var result = await authenticationStateTask;
+        User = result.User;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        AuthProvider.AuthenticationStateChanged += async (authenticationStateTask) => await OnAuthStateChanged(authenticationStateTask);
+
+        await OnAuthStateChanged(AuthProvider.GetAuthenticationStateAsync());
+    }
+
     // This is required because we need to set the state before logging out.
     // https://docs.microsoft.com/en-us/aspnet/core/blazor/security/webassembly/hosted-with-identity-server?view=aspnetcore-6.0&tabs=visual-studio#logindisplay-component
     protected async Task BeginSignOut(MouseEventArgs args)

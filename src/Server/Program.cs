@@ -1,9 +1,12 @@
+using Azure.Identity;
 using IdentityModel;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.OAuth;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
+using System.Net.Http.Headers;
+using System.Security.Claims;
 using Trailblazor.Server.Data;
 using Trailblazor.Server.Infrastructure;
 using Trailblazor.Server.Models;
@@ -11,6 +14,8 @@ using Trailblazor.Server.Models;
 using static Trailblazor.Server.Infrastructure.Constants;
 using static Trailblazor.Server.Infrastructure.Constants.Authentication;
 using static Trailblazor.Shared.Infrastructure.Authentication;
+
+using Graph = Microsoft.Graph;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -50,6 +55,8 @@ builder.Services.AddAuthentication()
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+
+builder.Services.AddHttpClient(HttpClientNames.UserImageClient);
 
 builder.Services.AddHttpContextAccessor();
 

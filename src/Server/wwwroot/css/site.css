@@ -1,83 +1,106 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\
-for details on configuring this project to bundle and minify static web assets. */
-
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
-}
-
-a {
-  color: #0077cc;
-}
-
-.form-control:focus {
-    border-color: #0077cc;
-    box-shadow: 0 0 0 0.2rem #0077cc;
-}
-
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
-
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
-
-.btn-link.nav-link:focus {
-  outline: black auto 1px;
-}
-
-html {
-  font-size: 14px;
-}
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.container {
-  max-width: 960px;
-}
-
-.pricing-header {
-  max-width: 700px;
-}
-
-.border-top {
-  border-top: 1px solid #e5e5e5;
-}
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
-}
-
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-}
-
-button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+﻿/*
+    NOTE: This file should be compiled to "wwwroot/css/root.css".
+    This will contain all the styles that should be available globally throughout the site.
+*/
+:root {
+  --red: #e74c3c;
+  --orange: #fd7e14;
+  --yellow: #f39c12;
+  --green: #00bc8c;
+  --blue: #269cff;
+  --purple: #6f42c1;
+  --white: #b0b4b7;
+  --grey: #444857;
+  --grey-dark: #333b45;
+  --black: #1d1e22;
+  --background-color: #1d1e22;
+  --middleground-color: #333b45;
+  --foreground-color: #444857;
+  --text-color: #b0b4b7;
+  --transition-duration: 0.3s;
 }
 
 body {
-  margin-bottom: 60px;
+  margin: 0;
+  background-color: var(--background-color) !important;
+  color: var(--text-color);
+  transition-duration: 0s;
 }
-.footer {
+
+#wrapper {
+  display: flex;
+  flex-flow: column;
+  height: 100vh;
+}
+#wrapper main {
+  height: 100%;
+}
+#wrapper footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  color: #444857;
+}
+
+/*
+    Loader
+*/
+.loader {
   position: absolute;
+  width: 65px;
+  height: 100px;
+  left: calc(50% - 32.5px);
+  top: calc(50% - 50px);
+}
+.loader::before, .loader::after {
+  content: "";
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  background-color: #269cff;
+}
+.loader::before {
+  top: 0;
+  left: 0;
+  animation: move-and-rotate-before 1.8s ease infinite;
+}
+.loader::after {
   bottom: 0;
-  width: 100%;
-  overflow: scroll;
-  white-space: nowrap;
-  line-height: 60px;
+  right: 0;
+  animation: move-and-rotate-after 1.8s ease infinite;
+}
+@keyframes move-and-rotate-before {
+  0% {
+    transform: translateX(0) translateY(0) rotate(0turn) scale(1);
+  }
+  25% {
+    transform: translateX(40px) translateY(0) rotate(-0.5turn) scale(0.8);
+  }
+  50% {
+    transform: translateX(40px) translateY(75px) rotate(-1turn) scale(1);
+  }
+  75% {
+    transform: translateX(0) translateY(75px) rotate(-1.5turn) scale(0.8);
+  }
+  100% {
+    transform: translateX(0) translateY(0) rotate(-2turn) scale(1);
+  }
+}
+@keyframes move-and-rotate-after {
+  0% {
+    transform: translateX(0) translateY(0) rotate(0turn) scale(1);
+  }
+  25% {
+    transform: translateX(-40px) translateY(0) rotate(-0.5turn) scale(0.8);
+  }
+  50% {
+    transform: translateX(-40px) translateY(-75px) rotate(-1turn) scale(1);
+  }
+  75% {
+    transform: translateX(0) translateY(-75px) rotate(-1.5turn) scale(0.8);
+  }
+  100% {
+    transform: translateX(0) translateY(0) rotate(-2turn) scale(1);
+  }
 }

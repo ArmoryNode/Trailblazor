@@ -23,5 +23,11 @@
             {
             }
         }
+
+        public static class HttpClientNames
+        {
+            public const string MicrosoftGraph = "Microsoft Graph";
+            public const string UserImageClient = "User Image";
+        }
     }
 }

@@ -8,9 +8,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="compilerconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="compilerconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.Identity" Version="1.6.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="6.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.MicrosoftAccount" Version="6.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="6.0.4" />
+    <PackageReference Include="Microsoft.Graph" Version="4.29.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.4" />
   </ItemGroup>
 
@@ -29,6 +39,10 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\fonts\Roboto\" />
   </ItemGroup>
 
 </Project>
