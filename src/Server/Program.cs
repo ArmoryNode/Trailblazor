@@ -1,4 +1,3 @@
-using Azure.Identity;
 using IdentityModel;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.OAuth;
@@ -10,12 +9,10 @@ using System.Security.Claims;
 using Trailblazor.Server.Data;
 using Trailblazor.Server.Infrastructure;
 using Trailblazor.Server.Models;
-
+using Trailblazor.Shared.Infrastructure;
 using static Trailblazor.Server.Infrastructure.Constants;
 using static Trailblazor.Server.Infrastructure.Constants.Authentication;
 using static Trailblazor.Shared.Infrastructure.Authentication;
-
-using Graph = Microsoft.Graph;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,7 +28,12 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
     .AddClaimsPrincipalFactory<CustomClaimsPrincipalFactory>();
 
 builder.Services.AddIdentityServer()
-    .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
+    .AddApiAuthorization<ApplicationUser, ApplicationDbContext>(options =>
+    {
+        // Configure user image claim and identity resource.
+        options.ApiResources.Single().UserClaims.Add(CustomClaimTypes.Image);
+        options.IdentityResources["openid"].UserClaims.Add(CustomClaimTypes.Image);
+    });
 
 builder.Services.AddAuthentication()
     .AddIdentityServerJwt()
@@ -48,7 +50,24 @@ builder.Services.AddAuthentication()
     {
         ConfigureExternalProvider(builder, microsoftOptions, ExternalProviders.Microsoft);
 
-        microsoftOptions.ClaimActions.MapJsonKey(CustomClaimTypes.Image, JwtClaimTypes.Picture, "url");
+        // Microsoft accounts do not include the photo URL claim, so we need to get the user's photo from the Microsoft Graph.
+        microsoftOptions.Events.OnCreatingTicket = async (context) =>
+        {
+            if (context.Identity is ClaimsIdentity identity)
+            {
+                // Create an http client and pass the user's access token.
+                // We'll need this to make a request to the Microsoft Graph on behalf of the user.
+                using var httpClient = new HttpClient();
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(OidcConstants.AuthenticationSchemes.AuthorizationHeaderBearer, context.AccessToken);
+
+                // Create a new Graph client to make getting resources from the Microsoft Graph easier.
+                var graphClient = new Microsoft.Graph.GraphServiceClient(httpClient);
+
+                // Get a stream of the user's profile image.
+                using var photoStream = await graphClient.Me.Photos["120x120"].Content.GetAsync();
+                context.Principal.AddBase64ImageClaim(photoStream);
+            }
+        };
 
         microsoftOptions.SaveTokens = true;
     });
@@ -95,7 +114,7 @@ app.Run();
 
 static void ConfigureExternalProvider(WebApplicationBuilder builder, OAuthOptions options, string provider)
 {
-    var authenticationSection = builder.Configuration.GetSection(nameof(Authentication))
+    var authenticationSection = builder.Configuration.GetSection(nameof(Constants.Authentication))
                                                      .GetSection(provider);
 
     options.ClientId = authenticationSection.GetValue<string>(Credentials.ClientId);

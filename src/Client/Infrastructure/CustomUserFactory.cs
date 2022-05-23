@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
 using System.Security.Claims;
-using System.Security.Principal;
 using static Trailblazor.Shared.Infrastructure.Authentication;
 
 namespace Trailblazor.Client.Infrastructure

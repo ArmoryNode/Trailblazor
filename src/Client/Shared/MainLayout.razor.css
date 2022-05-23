@@ -129,25 +129,6 @@
   align-items: center;
   padding: 0 20px;
 }
-#wrapper #topbar .profile-container {
-  display: inherit;
-  align-items: inherit;
-  width: 200px;
-  height: 100%;
-  margin-left: auto;
-}
-#wrapper #topbar .profile-container .profile-circle {
-  width: 42px;
-  height: 42px;
-  margin-left: auto;
-  border-radius: 50%;
-  overflow: hidden;
-  cursor: pointer;
-}
-#wrapper #topbar .profile-container .profile-circle > img {
-  width: inherit;
-  height: inherit;
-}
 #wrapper #content {
   padding: 20px;
   grid-area: content;

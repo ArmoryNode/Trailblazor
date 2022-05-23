@@ -156,28 +156,6 @@ $sidebar-item-height: 60px;
         grid-area: topbar;
         align-items: center;
         padding: 0 $default-padding;
-
-        .profile-container {
-            display: inherit;
-            align-items: inherit;
-            width: 200px;
-            height: 100%;
-            margin-left: auto;
-
-            .profile-circle {
-                width: 42px;
-                height: 42px;
-                margin-left: auto;
-                border-radius: 50%;
-                overflow: hidden;
-                cursor: pointer;
-
-                > img {
-                    width: inherit;
-                    height: inherit;
-                }
-            }
-        }
     }
 
     #content {
