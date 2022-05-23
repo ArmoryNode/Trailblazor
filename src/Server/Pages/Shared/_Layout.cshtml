@@ -41,7 +41,7 @@
             @RenderBody()
         </main>
         <footer>
-            <span>&copy; 2022 - ArmoryNode</span>
+            <span>&copy; @DateTime.Now.Year - ArmoryNode</span>
             @{
                 var foundPrivacy = Url.Page("/Privacy", new { area = "" });
             }
