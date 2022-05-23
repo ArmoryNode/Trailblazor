@@ -17,7 +17,7 @@
             <h1>Trailblazor</h1>
         </div>
         <form id="externalProviderForm" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h2 class="text-white">Login</h2>
+            <h2 class="text-white">Sign in with</h2>
             @foreach (var provider in Model.ExternalLogins!)
             {
                 switch (provider.DisplayName)
@@ -26,7 +26,7 @@
                         <button type="submit" class="external-provider" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
                             <div class="external-provider-inner">
                                 <img src="~/img/google_logo.svg" />
-                                <span>Sign in with Google</span>
+                                <span>Google</span>
                             </div>
                         </button>
                         break;
@@ -34,7 +34,7 @@
                         <button type="submit" class="external-provider" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
                             <div class="external-provider-inner">
                                 <img src="~/img/microsoft_logo.svg" />
-                                <span>Sign in with Microsoft</span>
+                                <span>Microsoft</span>
                             </div>
                         </button>
                         break;
