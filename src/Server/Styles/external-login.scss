@@ -1,0 +1,45 @@
+﻿@import "_all";
+
+#registerEmailContainer {
+    display: flex;
+    flex-flow: column nowrap;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+
+    h1 {
+        margin-bottom: 1em;
+    }
+
+    #formContainer {
+        display: flex;
+        flex-flow: column nowrap;
+        width: 500px;
+        background-color: $grey;
+        padding: 2em;
+
+        .input-container {
+            margin-bottom: 1em;
+        }
+
+        .button-container {
+            display: flex;
+        }
+    }
+}
+
+@media screen and (min-width: 992px) {
+    #registerEmailContainer {
+        #formContainer {
+            width: 500px;
+        }
+    }
+}
+
+@media screen and (max-width: 992px) {
+    #registerEmailContainer {
+        #formContainer {
+            width: 80%;
+        }
+    }
+}
