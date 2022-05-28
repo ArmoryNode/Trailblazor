@@ -43,6 +43,14 @@ namespace Trailblazor.Shared.Infrastructure
             => principal.FindFirst(JwtClaimTypes.Name)?.Value;
 
         /// <summary>
+        /// Get's the <see cref="ClaimsPrincipal"/>'s username claim value.
+        /// </summary>
+        /// <param name="principal"></param>
+        /// <returns>The <see cref="ClaimsPrincipal"/>'s username claim value.</returns>
+        public static string UserName(this ClaimsPrincipal principal)
+            => principal.FindFirst(JwtClaimTypes.PreferredUserName)?.Value;
+
+        /// <summary>
         /// Gets the <see cref="ClaimsPrincipal"/>'s Id and converts it to the type <typeparamref name="T"/>.
         /// </summary>
         /// <remarks>

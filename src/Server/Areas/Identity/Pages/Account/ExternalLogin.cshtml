@@ -20,10 +20,14 @@
         <form asp-page-handler="Confirmation" asp-route-returnUrl="@Model.ReturnUrl" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
+            @Html.HiddenFor(m => m.Input.Email)
+
             <div class="input-container">
-                <label asp-for="Input.Email" class="form-label"></label>
-                <input asp-for="Input.Email" class="form-control bg-dark text-light" autocomplete="email" />
-                <span asp-validation-for="Input.Email" class="text-warning"></span>
+                <label asp-for="Input.Email"></label>
+                <span class="form-control-plaintext text-light">@Model.Input.Email</span>
+                <label asp-for="Input.UserName" class="form-label"></label>
+                <input asp-for="Input.UserName" class="form-control bg-dark text-light" />
+                <span asp-validation-for="Input.UserName" class="text-warning"></span>
             </div>
 
             <div class="button-container">

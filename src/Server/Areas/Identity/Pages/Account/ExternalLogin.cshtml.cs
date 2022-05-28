@@ -83,6 +83,10 @@ namespace Trailblazor.Server.Areas.Identity.Pages.Account
             [Required]
             [EmailAddress]
             public string Email { get; set; }
+
+            [Display(Name = "User Name")]
+            [Required(ErrorMessage = "Please enter a username.")]
+            public string UserName { get; set; }
         }
 
         public IActionResult OnGet() => RedirectToPage("./Login");
@@ -144,7 +148,7 @@ namespace Trailblazor.Server.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostConfirmationAsync(string returnUrl = null)
         {
-            returnUrl = returnUrl ?? Url.Content("~/");
+            returnUrl ??= Url.Content("~/");
             // Get the information about the user from the external login provider
             var info = await _signInManager.GetExternalLoginInfoAsync();
             if (info == null)
@@ -156,9 +160,10 @@ namespace Trailblazor.Server.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
+                var userEmail = info.Principal.FindFirstValue(ClaimTypes.Email);
 
-                await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
-                await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+                await _userStore.SetUserNameAsync(user, Input.UserName, CancellationToken.None);
+                await _emailStore.SetEmailAsync(user, userEmail, CancellationToken.None);
 
                 var result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)
