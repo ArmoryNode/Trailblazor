@@ -1,0 +1,19 @@
+﻿@import "../Styles/_variables";
+
+.color-container {
+    display: flex;
+    flex-flow: row;
+    max-width: 800px;
+
+    .box {
+        --box-width: 100px;
+        width: var(--box-width);
+        height: var(--box-width);
+
+        @each $key, $val in $color-map {
+            &.box-#{$key} {
+                background-color: $val;
+            }
+        }
+    }
+}

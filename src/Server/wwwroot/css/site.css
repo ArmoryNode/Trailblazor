@@ -3,20 +3,20 @@
     This will contain all the styles that should be available globally throughout the site.
 */
 :root {
-  --red: #e74c3c;
-  --orange: #fd7e14;
-  --yellow: #f39c12;
-  --green: #00bc8c;
-  --blue: #269cff;
-  --purple: #6f42c1;
-  --white: #b0b4b7;
-  --grey: #444857;
+  --red: #d9534f;
+  --orange: #f0ad4e;
+  --yellow: #eed46e;
+  --green: #5cb85c;
+  --blue: #0275d8;
+  --purple: #4f49c6;
+  --white: #f7f7f7;
+  --grey: #979DA1;
   --grey-dark: #333b45;
   --black: #1d1e22;
   --background-color: #1d1e22;
   --middleground-color: #333b45;
-  --foreground-color: #444857;
-  --text-color: #b0b4b7;
+  --foreground-color: #979DA1;
+  --text-color: #f7f7f7;
   --transition-duration: 0.3s;
 }
 
@@ -40,7 +40,7 @@ body {
   align-items: center;
   justify-content: center;
   height: 60px;
-  color: #444857;
+  color: #979DA1;
 }
 
 /*
@@ -58,7 +58,7 @@ body {
   position: absolute;
   width: 25px;
   height: 25px;
-  background-color: #269cff;
+  background-color: #0275d8;
 }
 .loader::before {
   top: 0;

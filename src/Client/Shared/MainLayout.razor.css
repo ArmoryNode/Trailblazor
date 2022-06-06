@@ -10,14 +10,14 @@
 
 @media (prefers-color-scheme: dark) {
   body, #wrapper {
-    --text-color: #b0b4b7;
+    --text-color: #f7f7f7;
     --background-color: #1d1e22;
   }
 }
 @media (prefers-color-scheme: light) {
   body, #wrapper {
     --text-color: #1d1e22;
-    --background-color: #b0b4b7;
+    --background-color: #f7f7f7;
   }
 }
 *, *::before, *::after {
@@ -49,11 +49,11 @@
   margin-bottom: 60px;
   align-items: center;
   text-decoration: none;
-  color: #b0b4b7;
+  color: #f7f7f7;
 }
 #wrapper #sidebar #siteTitle > i {
   margin: 0 auto;
-  color: #b0b4b7;
+  color: #f7f7f7;
 }
 #wrapper #sidebar #siteTitle > span {
   margin: 0 auto;
@@ -78,7 +78,7 @@
   text-decoration: none;
   width: 100%;
   height: 100%;
-  color: #b0b4b7;
+  color: #f7f7f7;
   transition-timing-function: ease;
   transition-duration: 0.3s;
   transition-property: all;
@@ -97,11 +97,11 @@
 }
 #wrapper #sidebar ul.sidebar-items li.sidebar-item ::deep a:hover:not(.active) {
   background-color: #37404b;
-  color: #cbcdcf;
+  color: white;
 }
 #wrapper #sidebar ul.sidebar-items li.sidebar-item ::deep a.active {
   background-color: #444f5c;
-  color: #cbcdcf;
+  color: white;
 }
 #wrapper #sidebar .sidebar-footer {
   display: flex;
@@ -111,7 +111,7 @@
   align-items: center;
 }
 #wrapper #sidebar .sidebar-footer button.sign-out-button, #wrapper #sidebar .sidebar-footer a.sign-in-link {
-  color: #b0b4b7;
+  color: #f7f7f7;
   text-decoration: none;
 }
 #wrapper #sidebar .sidebar-footer button.sign-out-button span, #wrapper #sidebar .sidebar-footer a.sign-in-link span {
@@ -120,7 +120,7 @@
   font-size: 20px;
 }
 #wrapper #sidebar .sidebar-footer button.sign-out-button:hover, #wrapper #sidebar .sidebar-footer a.sign-in-link:hover {
-  color: #cbcdcf;
+  color: white;
 }
 #wrapper #topbar {
   display: flex;
