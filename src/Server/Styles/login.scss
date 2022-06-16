@@ -33,7 +33,7 @@
     #externalProviderForm {
         display: flex;
         flex-flow: column nowrap;
-        background-color: $grey;
+        background-color: $grey-dark;
         padding: 30px 20px 40px;
         border-radius: 5px;
         @include animate(fly-up);
@@ -92,7 +92,7 @@
             &[value="Google"] {
                 font-family: 'Roboto', sans-serif;
                 font-weight: bold;
-                color: lighten($grey, 10);
+                color: $dark;
                 border-radius: 5px;
                 @include transition-for(all);
 
@@ -138,6 +138,17 @@
 
 @media screen and (max-width: 992px) {
     #externalProviderContainer {
+        #siteTitle {
+            img {
+                width: 60px;
+            }
+
+            h1 {
+                margin-left: 20px;
+                font-size: 40px;
+            }
+        }
+
         #externalProviderForm {
             width: 80%;
         }

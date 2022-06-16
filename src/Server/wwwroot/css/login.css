@@ -23,7 +23,7 @@
 #externalProviderContainer #externalProviderForm {
   display: flex;
   flex-flow: column nowrap;
-  background-color: #979DA1;
+  background-color: #333b45;
   padding: 30px 20px 40px;
   border-radius: 5px;
   animation: fly-up 0.6s ease;
@@ -80,7 +80,7 @@
 #externalProviderContainer #externalProviderForm button.external-provider[value=Google] {
   font-family: "Roboto", sans-serif;
   font-weight: bold;
-  color: #b2b6b9;
+  color: #1d1e22;
   border-radius: 5px;
   transition-timing-function: ease;
   transition-duration: 0.3s;
@@ -114,6 +114,13 @@
   }
 }
 @media screen and (max-width: 992px) {
+  #externalProviderContainer #siteTitle img {
+    width: 60px;
+  }
+  #externalProviderContainer #siteTitle h1 {
+    margin-left: 20px;
+    font-size: 40px;
+  }
   #externalProviderContainer #externalProviderForm {
     width: 80%;
   }
