@@ -1,0 +1,42 @@
+﻿@page
+@model ExternalLoginModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/external-login.min.css" />
+}
+
+<div id="registerEmailContainer">
+    <h1>@ViewData["Title"]</h1>
+    <div id="formContainer">
+        <p>
+            You've successfully authenticated with <strong>@Model.ProviderDisplayName</strong>.
+            Please enter an email address for this site below and click the Register button to finish
+            logging in.
+        </p>
+
+        <form asp-page-handler="Confirmation" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            @Html.HiddenFor(m => m.Input.Email)
+
+            <div class="input-container">
+                <label asp-for="Input.Email"></label>
+                <span class="form-control-plaintext text-light">@Model.Input.Email</span>
+                <label asp-for="Input.UserName" class="form-label"></label>
+                <input asp-for="Input.UserName" class="form-control bg-dark text-light" />
+                <span asp-validation-for="Input.UserName" class="text-warning"></span>
+            </div>
+
+            <div class="button-container">
+                <button type="submit" class="btn btn-primary text-end">Register</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,42 @@
+﻿@import "_all";
+
+#registerConfirmationContainer {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+
+    h1 {
+        margin-bottom: 15px;
+    }
+
+    .register-confirmation-body {
+        background-color: $grey-dark;
+        padding: 20px;
+
+        p {
+            margin: 0;
+        }
+    }
+
+    .btn {
+        margin-top: 20px;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    #registerConfirmationContainer {
+        .register-confirmation-body {
+            width: 500px;
+        }
+    }
+}
+
+@media screen and (max-width: 992px) {
+    #registerConfirmationContainer {
+        .register-confirmation-body {
+            width: 80%;
+        }
+    }
+}

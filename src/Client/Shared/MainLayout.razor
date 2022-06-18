@@ -1,0 +1,58 @@
+﻿@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using System.Security.Claims
+@using System.Security.Principal
+@using Trailblazor.Shared.Infrastructure
+
+@inherits LayoutComponentBase
+@inject NavigationManager NavManager
+@inject SignOutSessionStateManager SignOutManager
+@inject AuthenticationStateProvider AuthProvider
+
+<div id="wrapper">
+    <nav id="sidebar">
+        <a id="siteTitle" href="/">
+            <i aria-hidden="true" class="fa-duotone fa-person-hiking fa-3x"></i>
+            <span>Trailblazor</span>
+        </a>
+        <ul class="sidebar-items">
+            <li class="sidebar-item">
+                <NavLink href="" Match="NavLinkMatch.All">
+                    <div><i class="fa-solid fa-fw fa-home fa-lg" aria-hidden="true"></i><span>Home</span></div>
+                </NavLink>
+            </li>
+
+            <li class="sidebar-item">
+                <NavLink href="counter">
+                    <div><i class="fa-solid fa-fw fa-abacus fa-lg" aria-hidden="true"></i><span>Counter</span></div>
+                </NavLink>
+            </li>
+        </ul>
+        <div class="sidebar-footer">
+            <AuthorizeView>
+                <Authorized>
+                    <button @onclick="BeginSignOut" class="sign-out-button btn btn-link"><i class="fa-regular fa-fw fa-power-off" aria-hidden="true"></i><span>Sign out</span></button>
+                </Authorized>
+                <NotAuthorized>
+                    <a href="/authentication/login" class="sign-in-link btn btn-link"><i class="fa-solid fa-fw fa-right-to-bracket" aria-hidden="true"></i><span>Sign in</span></a>
+                </NotAuthorized>
+            </AuthorizeView>
+        </div>
+    </nav>
+    <div id="topbar">
+        <ProfileCircle />
+    </div>
+    <main id="content">
+        @Body
+    </main>
+</div>
+
+@code {
+
+    // This is required because we need to set the state before logging out.
+    // https://docs.microsoft.com/en-us/aspnet/core/blazor/security/webassembly/hosted-with-identity-server?view=aspnetcore-6.0&tabs=visual-studio#logindisplay-component
+    protected async Task BeginSignOut(MouseEventArgs args)
+    {
+        await SignOutManager.SetSignOutState();
+        NavManager.NavigateTo("authentication/logout");
+    }
+}

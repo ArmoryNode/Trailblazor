@@ -1,0 +1,21 @@
+{
+  "name": "Trailblazor",
+  "short_name": "Trailblazor",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#269cff", // This is taken from the $blue variable in "_variables.scss"
+  "theme_color": "#1d1e22", // This is taken from the $black variable in "_variables.scss"
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ]
+}

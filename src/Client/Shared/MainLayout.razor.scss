@@ -1,0 +1,165 @@
+﻿@import "../Styles/_all";
+
+$foreground: $grey;
+$middleground: $grey-dark;
+$background: $black;
+
+$default-padding: 20px;
+$topbar-height: 70px;
+$sidebar-item-height: 60px;
+
+:root {
+    --tb-primary: $primary;
+    --tb-secondary: $secondary;
+    --tb-warning: $warning;
+    --tb-danger: $danger;
+    --tb-success: $success;
+    --tb-light: $light;
+    --tb-dark: $dark;
+}
+
+@media (prefers-color-scheme: dark) {
+    body, #wrapper {
+        --text-color: #{$light};
+        --background-color: #{$dark};
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    body, #wrapper {
+        --text-color: #{$dark};
+        --background-color: #{$light};
+    }
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+#wrapper {
+    display: grid;
+    min-height: 100vh;
+    width: 100vw;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    font-family: $font-family;
+    grid-template-areas:
+        'sidebar topbar topbar' 'sidebar content content';
+    grid-template-columns: 300px auto;
+    grid-template-rows: $topbar-height auto;
+
+    #sidebar {
+        display: flex;
+        flex-flow: column nowrap;
+        grid-area: sidebar;
+        background-color: $middleground;
+
+        #siteTitle {
+            display: flex;
+            height: $topbar-height;
+            padding: 30px;
+            margin-top: 20px;
+            margin-bottom: 60px;
+            align-items: center;
+            text-decoration: none;
+            color: $light;
+
+            & > i {
+                margin: 0 auto;
+                color: $light;
+            }
+
+            & > span {
+                margin: 0 auto;
+                font-size: 32px;
+                font-weight: 900;
+            }
+        }
+
+        ul.sidebar-items {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+
+            li.sidebar-item {
+                display: flex;
+                height: $sidebar-item-height;
+                align-items: center;
+                background-color: $middleground;
+
+                ::deep a {
+                    display: flex;
+                    flex-grow: 1;
+                    align-items: center;
+                    text-decoration: none;
+                    width: 100%;
+                    height: 100%;
+                    color: $light;
+
+                    @include transition-for(all);
+
+                    div {
+                        display: inherit;
+                        align-items: inherit;
+                        padding: 0 20px;
+
+                        i {
+                            margin-right: 1em;
+                        }
+
+                        span {
+                            font-size: 20px;
+                            font-weight: 700;
+                        }
+                    }
+
+                    &:hover:not(.active) {
+                        background-color: lighten($middleground, 2);
+                        color: lighten($light, 10);
+                    }
+
+                    &.active {
+                        background-color: lighten($middleground, 8);
+                        color: lighten($light, 10);
+                    }
+                }
+            }
+        }
+
+        .sidebar-footer {
+            display: flex;
+            flex-flow: column nowrap;
+            margin-top: auto;
+            margin-bottom: 50px;
+            align-items: center;
+
+            button.sign-out-button, a.sign-in-link {
+                color: $light;
+                text-decoration: none;
+
+                span {
+                    margin-left: 8px;
+                    font-weight: 700;
+                    font-size: 20px;
+                }
+
+                &:hover {
+                    color: lighten($light, 10);
+                }
+            }
+        }
+    }
+
+    #topbar {
+        display: flex;
+        flex-flow: row nowrap;
+        grid-area: topbar;
+        align-items: center;
+        padding: 0 $default-padding;
+    }
+
+    #content {
+        padding: $default-padding;
+        grid-area: content;
+    }
+}

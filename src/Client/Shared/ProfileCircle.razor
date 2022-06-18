@@ -1,0 +1,48 @@
+﻿@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using System.Security.Claims
+@using System.Security.Principal
+@using Trailblazor.Shared.Infrastructure
+
+@inject AuthenticationStateProvider AuthProvider
+
+@inherits ComponentBase
+
+<div class="profile-container">
+    <div class="profile-circle">
+        <AuthorizeView>
+            <Authorized>
+                <img alt="profile image" src="@User.Image()" title="@User.UserName()" />
+            </Authorized>
+            <NotAuthorized>
+                <img alt="placeholder profile image" src="/img/unauthenticated.svg" />
+            </NotAuthorized>
+        </AuthorizeView>
+    </div>
+</div>
+
+@code {
+    private ClaimsPrincipal? _user;
+    private ClaimsPrincipal? User
+    {
+        get => _user;
+        set
+        {
+            _user = value;
+            StateHasChanged();
+        }
+    }
+
+    private async Task OnAuthStateChanged(Task<AuthenticationState> authenticationStateTask)
+        => User = (await authenticationStateTask).User;
+
+    private bool HasImageClaim => User is ClaimsPrincipal user && user.Identity is IIdentity identity && !string.IsNullOrWhiteSpace(user.Image());
+
+    protected override async Task OnInitializedAsync()
+    {
+        AuthProvider.AuthenticationStateChanged += async (authenticationStateTask) => await OnAuthStateChanged(authenticationStateTask);
+
+        await OnAuthStateChanged(AuthProvider.GetAuthenticationStateAsync());
+
+        await base.OnInitializedAsync();
+    }
+}

@@ -1,0 +1,31 @@
+﻿@page
+@model ConfirmEmailModel
+@{
+    ViewData["Title"] = "Confirm email";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/confirm-email.min.css" />
+}
+
+<div id="confirmEmailContainer">
+    <div id="confirmEmailBody">
+        @if (Model.Success)
+        {
+            <img alt="Trailblazor" src="~/img/trailblazor-icon.svg" width="50" />
+        }
+        else
+        {
+            <img alt="Trailblazor" src="~/img/error.svg" width="50" />
+        }
+        <p>@Model.StatusMessage</p>
+        @if (Model.Success)
+        {
+                <a class="btn btn-primary" asp-page="ExternalLogin">Login</a>
+        }
+        else
+        {
+            <a class="btn btn-primary" href="/">Return home</a>
+        }
+    </div>
+</div>
