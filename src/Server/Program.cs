@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Graph.Models.ODataErrors;
+using RavenDBDependencyInjection.AspNetCore;
 using System.Net.Http.Headers;
 using System.Security.Claims;
 using Trailblazor.Server.Data;
@@ -81,6 +82,12 @@ builder.Services.AddAuthentication()
 
         microsoftOptions.SaveTokens = true;
     });
+
+builder.Services.AddRavenDbAsync(p =>
+{
+    p.Urls = new[] { "http://localhost:8080/" };
+    p.Database = "TrailblazorDb";
+});
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
