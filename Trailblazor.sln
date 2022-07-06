@@ -14,9 +14,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trialblazor.Server.Tests", "test\Trialblazor.Server.Tests\Trialblazor.Server.Tests.csproj", "{DE01034B-0D5C-4CDB-9236-2614B26D2E31}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trailblazor.Server.Tests", "test\Trialblazor.Server.Tests\Trailblazor.Server.Tests.csproj", "{DE01034B-0D5C-4CDB-9236-2614B26D2E31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trailblazor.Client.Tests", "test\Trailblazor.Client.Tests\Trailblazor.Client.Tests.csproj", "{29BA5275-251F-470C-A5BC-35DCDB6F0ACD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trailblazor.Client.Tests", "test\Trailblazor.Client.Tests\Trailblazor.Client.Tests.csproj", "{29BA5275-251F-470C-A5BC-35DCDB6F0ACD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trailblazor.Domain", "src\Domain\Trailblazor.Domain.csproj", "{9AC7EDC7-7A2F-4720-A9C3-1099EC51E346}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +46,10 @@ Global
 		{29BA5275-251F-470C-A5BC-35DCDB6F0ACD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29BA5275-251F-470C-A5BC-35DCDB6F0ACD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29BA5275-251F-470C-A5BC-35DCDB6F0ACD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9AC7EDC7-7A2F-4720-A9C3-1099EC51E346}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AC7EDC7-7A2F-4720-A9C3-1099EC51E346}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AC7EDC7-7A2F-4720-A9C3-1099EC51E346}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AC7EDC7-7A2F-4720-A9C3-1099EC51E346}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

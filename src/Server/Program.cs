@@ -18,10 +18,16 @@ using static Trailblazor.Shared.Infrastructure.Authentication;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var applicationDbConnectionString = builder.Configuration.GetConnectionString("ApplicationDbConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));
+    options.UseSqlServer(applicationDbConnectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+// Configure and register Trailblazor DbContext
+var cosmosDbConnectionString = builder.Configuration.GetConnectionString("CosmosDbConnection");
+var cosmosDbOptions = builder.Configuration.GetRequiredSection(nameof(CosmosDbSettings)).Get<CosmosDbSettings>();
+builder.Services.AddDbContext<TrailblazorDbContext>(options =>
+    options.UseCosmos(cosmosDbConnectionString, cosmosDbOptions.DatabaseName));
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddRoles<IdentityRole>()
@@ -84,8 +90,6 @@ builder.Services.AddAuthentication()
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
-
-builder.Services.AddHttpClient(HttpClientNames.UserImageClient);
 
 builder.Services.AddHttpContextAccessor();
 
