@@ -1,7 +1,5 @@
 ﻿@page "/counter"
 @using Microsoft.AspNetCore.Authorization
-@inject HttpClient Http
-@attribute [Authorize]
 
 <PageTitle>Counter</PageTitle>
 
@@ -10,7 +8,6 @@
 <p role="status">Current count: @currentCount</p>
 
 <button type="button" class="btn btn-primary" @onclick="IncrementCount">Click me</button>
-<button type="button" class="btn btn-secondary" @onclick="GetItems">Click me</button>
 
 @code {
     private int currentCount = 0;
@@ -18,10 +15,5 @@
     private void IncrementCount()
     {
         currentCount++;
-    }
-
-    private async Task GetItems()
-    {
-        var items = await Http.GetStringAsync("api/Test");
     }
 }
