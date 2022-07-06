@@ -6,8 +6,6 @@ namespace Trailblazor.Server.Data
 {
     public class TrailblazorDbContext : DbContext
     {
-        public const string connectionStringKey = "TrailblazorDbConnection";
-
         public TrailblazorDbContext(DbContextOptions<TrailblazorDbContext> options) : base(options)
         {
         }
