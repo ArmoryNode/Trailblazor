@@ -12,13 +12,14 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FA50CE9D-8C8B-46A0-BC64-99706B189F34}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		.github\workflows\dotnet-ci.yml = .github\workflows\dotnet-ci.yml
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trailblazor.Server.Tests", "test\Trialblazor.Server.Tests\Trailblazor.Server.Tests.csproj", "{DE01034B-0D5C-4CDB-9236-2614B26D2E31}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trailblazor.Client.Tests", "test\Trailblazor.Client.Tests\Trailblazor.Client.Tests.csproj", "{29BA5275-251F-470C-A5BC-35DCDB6F0ACD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trailblazor.Domain", "src\Domain\Trailblazor.Domain.csproj", "{9AC7EDC7-7A2F-4720-A9C3-1099EC51E346}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trailblazor.Domain", "src\Domain\Trailblazor.Domain.csproj", "{9AC7EDC7-7A2F-4720-A9C3-1099EC51E346}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
