@@ -1,5 +1,5 @@
 <div align="center">
-  <h3 align="center">Trailblazor</h3>
+  <h1 align="center">Trailblazor</h1>
   
   <p align="center">A hiking, camping, and backpacking companion app</p>
   <br/>
