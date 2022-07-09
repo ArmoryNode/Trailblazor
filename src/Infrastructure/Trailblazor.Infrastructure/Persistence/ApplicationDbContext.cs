@@ -1,10 +1,7 @@
-﻿using Duende.IdentityServer.EntityFramework.Options;
-using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using Trailblazor.Server.Models;
+﻿using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
+using Trailblazor.Infrastructure.Identity;
 
-namespace Trailblazor.Server.Data
+namespace Trailblazor.Infrastructure.Persistence
 {
     public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>
     {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using System.Security.Claims;
-using Trailblazor.Server.Models;
+using Trailblazor.Infrastructure.Identity;
 using static Trailblazor.Shared.Infrastructure.Authentication;
 
 namespace Trailblazor.Server.Infrastructure

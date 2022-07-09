@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace Trailblazor.Server.Models
+namespace Trailblazor.Infrastructure.Identity
 {
     public class ApplicationUser : IdentityUser
     {

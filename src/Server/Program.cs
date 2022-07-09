@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Graph.Models.ODataErrors;
 using System.Net.Http.Headers;
 using System.Security.Claims;
-using Trailblazor.Server.Data;
+using Trailblazor.Infrastructure.Identity;
+using Trailblazor.Infrastructure.Persistence;
 using Trailblazor.Server.Infrastructure;
-using Trailblazor.Server.Models;
 using Trailblazor.Shared.Infrastructure;
-using static Trailblazor.Server.Infrastructure.Constants;
+
 using static Trailblazor.Server.Infrastructure.Constants.Authentication;
 using static Trailblazor.Shared.Infrastructure.Authentication;
 

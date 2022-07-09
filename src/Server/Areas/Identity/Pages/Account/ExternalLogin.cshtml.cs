@@ -8,13 +8,11 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-using Microsoft.Graph;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 using System.Text;
 using System.Text.Encodings.Web;
-using Trailblazor.Server.Models;
-
+using Trailblazor.Infrastructure.Identity;
 using static Trailblazor.Shared.Infrastructure.Authentication;
 
 namespace Trailblazor.Server.Areas.Identity.Pages.Account
