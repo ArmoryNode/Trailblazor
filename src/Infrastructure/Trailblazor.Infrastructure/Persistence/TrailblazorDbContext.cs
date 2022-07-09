@@ -1,8 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿#nullable disable
 
-#nullable disable
-
-namespace Trailblazor.Server.Data
+namespace Trailblazor.Infrastructure.Persistence
 {
     public class TrailblazorDbContext : DbContext
     {

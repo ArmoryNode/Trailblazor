@@ -5,13 +5,13 @@
 using System;
 using System.Text;
 using System.Threading.Tasks;
+using Trailblazor.Infrastructure.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-using Trailblazor.Server.Models;
 
 namespace Trailblazor.Server.Areas.Identity.Pages.Account
 {
