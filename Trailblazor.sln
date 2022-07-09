@@ -22,7 +22,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trailblazor.Client.Tests", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trailblazor.Domain", "src\Domain\Trailblazor.Domain.csproj", "{9AC7EDC7-7A2F-4720-A9C3-1099EC51E346}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trailblazor.Infrastructure", "src\Infrastructure\Trailblazor.Infrastructure\Trailblazor.Infrastructure.csproj", "{AAB7C958-5B40-434A-8A9D-52178C18E243}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trailblazor.Infrastructure", "src\Infrastructure\Trailblazor.Infrastructure.csproj", "{AAB7C958-5B40-434A-8A9D-52178C18E243}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

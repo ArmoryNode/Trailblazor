@@ -1,4 +1,4 @@
-﻿namespace Trailblazor.Server.Infrastructure
+﻿namespace Trailblazor.Infrastructure.Configurations
 {
     public record struct CosmosDbSettings
     {

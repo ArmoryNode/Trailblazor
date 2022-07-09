@@ -19,7 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Client\Trailblazor.Client.csproj" />
-    <ProjectReference Include="..\Infrastructure\Trailblazor.Infrastructure\Trailblazor.Infrastructure.csproj" />
+    <ProjectReference Include="..\Infrastructure\Trailblazor.Infrastructure.csproj" />
     <ProjectReference Include="..\Shared\Trailblazor.Shared.csproj" />
   </ItemGroup>
 
