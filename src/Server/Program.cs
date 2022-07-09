@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Graph.Models.ODataErrors;
 using System.Net.Http.Headers;
 using System.Security.Claims;
+using Trailblazor.Infrastructure.Configurations;
 using Trailblazor.Infrastructure.Identity;
 using Trailblazor.Infrastructure.Persistence;
 using Trailblazor.Server.Infrastructure;
