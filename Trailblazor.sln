@@ -22,7 +22,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trailblazor.Client.Tests", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trailblazor.Domain", "src\Domain\Trailblazor.Domain.csproj", "{9AC7EDC7-7A2F-4720-A9C3-1099EC51E346}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trailblazor.Infrastructure", "src\Infrastructure\Trailblazor.Infrastructure.csproj", "{AAB7C958-5B40-434A-8A9D-52178C18E243}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trailblazor.Infrastructure", "src\Infrastructure\Trailblazor.Infrastructure.csproj", "{AAB7C958-5B40-434A-8A9D-52178C18E243}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trailblazor.Shared.Tests", "test\Trailblazor.Shared.Tests\Trailblazor.Shared.Tests.csproj", "{FDB06D29-50EF-4C7C-93C1-67B164004DC6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -58,6 +60,10 @@ Global
 		{AAB7C958-5B40-434A-8A9D-52178C18E243}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AAB7C958-5B40-434A-8A9D-52178C18E243}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AAB7C958-5B40-434A-8A9D-52178C18E243}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDB06D29-50EF-4C7C-93C1-67B164004DC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDB06D29-50EF-4C7C-93C1-67B164004DC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDB06D29-50EF-4C7C-93C1-67B164004DC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDB06D29-50EF-4C7C-93C1-67B164004DC6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
