@@ -2,8 +2,20 @@
 
 namespace Trailblazor.Shared.Tests
 {
-    public class StringTests
+    public class WeightFormattedTests
     {
+        [Theory]
+        [InlineData(WeightUnit.Kilograms, "Kilograms")]
+        [InlineData(WeightUnit.Grams, "Grams")]
+        [InlineData(WeightUnit.Pounds, "Pounds")]
+        [InlineData(WeightUnit.Ounces, "Ounces")]
+        public void When_CallingGetDisplayNameOnWeightUnit_Expect_DisplayName(WeightUnit unit, string expected)
+        {
+            var actual = unit.GetDisplayName();
+
+            Assert.Equal(expected, actual);
+        }
+
         [Theory]
         [InlineData(1, WeightUnit.Kilograms, "1 Kilogram")]
         [InlineData(2, WeightUnit.Kilograms, "2 Kilograms")]

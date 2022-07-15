@@ -4,13 +4,13 @@ namespace Trailblazor.Shared.Models
 {
     public enum WeightUnit
     {
-        [Display(Name = "Gram", ShortName = "g")]
+        [Display(Name = "Grams", ShortName = "g")]
         Grams,
-        [Display(Name = "Kilogram", ShortName = "kg")]
+        [Display(Name = "Kilograms", ShortName = "kg")]
         Kilograms,
-        [Display(Name = "Ounce", ShortName = "oz")]
+        [Display(Name = "Ounces", ShortName = "oz")]
         Ounces,
-        [Display(Name = "Pound", ShortName = "lb")]
+        [Display(Name = "Pounds", ShortName = "lb")]
         Pounds
     }
 }

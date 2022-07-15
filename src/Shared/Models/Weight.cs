@@ -104,7 +104,7 @@ namespace Trailblazor.Shared.Models
 
         public override string ToString()
         {
-            var name = Amount == 1 || Amount == -1 ? Unit.GetName() : Unit.GetName() + "s";
+            var name = Amount == 1 || Amount == -1 ? Unit.GetName().TrimEnd('s') : Unit.GetName();
             return $"{Amount}\u0020{name}";
         }
 
