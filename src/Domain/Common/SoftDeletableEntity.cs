@@ -1,8 +1,8 @@
 ﻿namespace Trailblazor.Domain.Common
 {
-    public abstract record SoftDeletableEntity
+    public interface ISoftDeletableEntity
     {
-        public DateTimeOffset? DeletedOn { get; set; }
+        public DateTimeOffset? DeletedOn { get; init; }
         public bool Deleted => DeletedOn != null;
     }
 }

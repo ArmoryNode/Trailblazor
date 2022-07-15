@@ -4,8 +4,8 @@ namespace Trailblazor.Shared.Models
 {
     public record struct Weight : IEquatable<Weight>
     {
-        public decimal Amount { get; set; }
-        public WeightUnit Unit { get; init; }
+        public decimal Amount { get; set; } = 0.0m;
+        public WeightUnit Unit { get; init; } = default;
 
         public Weight(decimal amount)
         {
