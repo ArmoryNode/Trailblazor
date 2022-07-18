@@ -20,7 +20,7 @@ namespace Trailblazor.Infrastructure.Persistence
                 builder.HasDiscriminator<string>(nameof(GearList));
             });
 
-            modelBuilder.Entity<GearList>(builder =>
+            modelBuilder.Entity<GearItem>(builder =>
             {
                 builder.HasDiscriminator<string>(nameof(GearItem));
             });
