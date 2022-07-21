@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Trailblazor.Domain.Common;
+﻿using Trailblazor.Domain.Common;
 
 namespace Trailblazor.Domain.Entities.Gear
 {

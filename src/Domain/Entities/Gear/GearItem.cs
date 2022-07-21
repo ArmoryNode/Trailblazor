@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Trailblazor.Domain.Common;
+﻿using Trailblazor.Domain.Common;
 using Trailblazor.Shared.Models;
 
 namespace Trailblazor.Domain.Entities.Gear
@@ -11,9 +10,11 @@ namespace Trailblazor.Domain.Entities.Gear
 
         public Weight Weight { get; init; }
 
-        public bool Worn { get; init; }
-        public bool Consumable { get; init; }
-        public bool Favorite { get; init; }
+        public bool IsWorn { get; init; }
+        public bool IsConsumable { get; init; }
+        public bool IsFavorite { get; init; }
+
+        public string? Link { get; init; }
 
         public DateTimeOffset? DeletedOn { get; init; }
     }
