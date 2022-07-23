@@ -17,11 +17,13 @@ namespace Trailblazor.Infrastructure.Persistence
         {
             modelBuilder.Entity<GearList>(builder =>
             {
+                builder.ToContainer("Gear");
                 builder.HasDiscriminator<string>(nameof(GearList));
             });
 
             modelBuilder.Entity<GearItem>(builder =>
             {
+                builder.ToContainer("Gear");
                 builder.HasDiscriminator<string>(nameof(GearItem));
             });
         }
