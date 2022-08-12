@@ -12,6 +12,6 @@ namespace Trailblazor.Domain.Entities.Gear
 
         public GearCollection[] GearCollections { get; init; } = Array.Empty<GearCollection>();
 
-        public DateTimeOffset? DeletedOn { get; init; }
+        public DateTimeOffset? DeletedOn { get; set; }
     }
 }

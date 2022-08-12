@@ -16,6 +16,6 @@ namespace Trailblazor.Domain.Entities.Gear
 
         public string? Link { get; init; }
 
-        public DateTimeOffset? DeletedOn { get; init; }
+        public DateTimeOffset? DeletedOn { get; set; }
     }
 }

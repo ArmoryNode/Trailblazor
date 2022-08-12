@@ -2,7 +2,7 @@
 {
     public interface ISoftDeletableEntity
     {
-        public DateTimeOffset? DeletedOn { get; init; }
+        public DateTimeOffset? DeletedOn { get; set; }
         public bool Deleted => DeletedOn != null;
     }
 }
