@@ -132,4 +132,17 @@
 #wrapper #content {
   padding: 20px;
   grid-area: content;
+  width: 100%;
+  justify-self: center;
+}
+
+@media screen and (min-width: 1400px) {
+  #wrapper #content {
+    width: 60%;
+  }
+}
+@media screen and (min-width: 1200px) {
+  #wrapper #content {
+    width: 80%;
+  }
 }
