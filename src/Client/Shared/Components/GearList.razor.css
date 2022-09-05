@@ -1,0 +1,72 @@
+﻿.tb-gear-list-wrapper .tb-gear-list-body {
+  --shadow-color: #1d1e22;
+  box-shadow: 0.3px 0.5px 0.7px rgba(29, 30, 34, 0.34), 1.5px 2.9px 3.7px -0.4px rgba(29, 30, 34, 0.34), 2.7px 5.4px 6.8px -0.7px rgba(29, 30, 34, 0.34), 4.5px 8.9px 11.2px -1.1px rgba(29, 30, 34, 0.34), 7.1px 14.3px 18px -1.4px rgba(29, 30, 34, 0.34), 11.2px 22.3px 28.1px -1.8px rgba(29, 30, 34, 0.34), 17px 33.9px 42.7px -2.1px rgba(29, 30, 34, 0.34), 25px 50px 62.9px -2.5px rgba(29, 30, 34, 0.34);
+}
+.tb-gear-list-wrapper .tb-gear-list-body .tb-gear-collection .tb-gear-collection-title {
+  display: inline-block;
+  font-size: 24px;
+  padding: 10px 20px;
+  background-color: #2c333c;
+}
+.tb-gear-list-wrapper .tb-gear-list-body .tb-gear-collection ul.tb-gear-collection-body {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.tb-gear-list-wrapper .tb-gear-list-body .tb-gear-collection ul.tb-gear-collection-body li.tb-gear-collection-row, .tb-gear-list-wrapper .tb-gear-list-body .tb-gear-collection ul.tb-gear-collection-body li.tb-gear-collection-header-row {
+  background-color: #333b45;
+  display: grid;
+  grid-template-columns: 40px 200px 1fr 80px 80px;
+  transition-timing-function: ease;
+  transition-duration: 0.3s;
+  transition-property: background-color;
+}
+.tb-gear-list-wrapper .tb-gear-list-body .tb-gear-collection ul.tb-gear-collection-body li.tb-gear-collection-row:nth-of-type(even), .tb-gear-list-wrapper .tb-gear-list-body .tb-gear-collection ul.tb-gear-collection-body li.tb-gear-collection-header-row:nth-of-type(even) {
+  background-color: #3a434e;
+}
+.tb-gear-list-wrapper .tb-gear-list-body .tb-gear-collection ul.tb-gear-collection-body li.tb-gear-collection-row:not(.tb-gear-collection-header-row):hover, .tb-gear-list-wrapper .tb-gear-list-body .tb-gear-collection ul.tb-gear-collection-body li.tb-gear-collection-header-row:not(.tb-gear-collection-header-row):hover {
+  background-color: #3c4551;
+}
+.tb-gear-list-wrapper .tb-gear-list-body .tb-gear-collection ul.tb-gear-collection-body li.tb-gear-collection-row > [class^=tb-gear-item-], .tb-gear-list-wrapper .tb-gear-list-body .tb-gear-collection ul.tb-gear-collection-body li.tb-gear-collection-header-row > [class^=tb-gear-item-] {
+  padding: 10px;
+}
+.tb-gear-list-wrapper .tb-gear-list-body .tb-gear-collection ul.tb-gear-collection-body li.tb-gear-collection-row > .tb-gear-item-order, .tb-gear-list-wrapper .tb-gear-list-body .tb-gear-collection ul.tb-gear-collection-body li.tb-gear-collection-header-row > .tb-gear-item-order {
+  color: #9e9e9e;
+  font-weight: bold;
+}
+.tb-gear-list-wrapper .tb-gear-list-body .tb-gear-collection ul.tb-gear-collection-body li.tb-gear-collection-row > .tb-gear-item-order,
+.tb-gear-list-wrapper .tb-gear-list-body .tb-gear-collection ul.tb-gear-collection-body li.tb-gear-collection-row > .tb-gear-item-weight,
+.tb-gear-list-wrapper .tb-gear-list-body .tb-gear-collection ul.tb-gear-collection-body li.tb-gear-collection-row > .tb-gear-item-quantity, .tb-gear-list-wrapper .tb-gear-list-body .tb-gear-collection ul.tb-gear-collection-body li.tb-gear-collection-header-row > .tb-gear-item-order,
+.tb-gear-list-wrapper .tb-gear-list-body .tb-gear-collection ul.tb-gear-collection-body li.tb-gear-collection-header-row > .tb-gear-item-weight,
+.tb-gear-list-wrapper .tb-gear-list-body .tb-gear-collection ul.tb-gear-collection-body li.tb-gear-collection-header-row > .tb-gear-item-quantity {
+  text-align: center;
+}
+.tb-gear-list-wrapper .tb-gear-list-body .tb-gear-collection ul.tb-gear-collection-body li.tb-gear-collection-aggregate-row {
+  display: grid;
+  grid-template-columns: 1fr 80px 80px;
+}
+.tb-gear-list-wrapper .tb-gear-list-body .tb-gear-collection ul.tb-gear-collection-body li.tb-gear-collection-aggregate-row .tb-gear-collection-aggregate-column {
+  padding: 10px;
+}
+.tb-gear-list-wrapper .tb-gear-list-body .tb-gear-collection ul.tb-gear-collection-body li.tb-gear-collection-aggregate-row .tb-gear-collection-aggregate-column .tb-gear-collection-aggregate-weight,
+.tb-gear-list-wrapper .tb-gear-list-body .tb-gear-collection ul.tb-gear-collection-body li.tb-gear-collection-aggregate-row .tb-gear-collection-aggregate-column .tb-gear-collection-aggregate-quantity {
+  font-weight: bold;
+  text-align: center;
+}
+.tb-gear-list-wrapper .tb-gear-list-body .tb-gear-collection ul.tb-gear-collection-body li.tb-gear-collection-aggregate-row .tb-gear-collection-aggregate-column .tb-gear-collection-add {
+  border: none;
+  outline: none;
+  color: inherit;
+  background-color: transparent;
+}
+.tb-gear-list-wrapper .tb-gear-list-body .tb-gear-collection ul.tb-gear-collection-body .tb-gear-collection-header-row {
+  font-weight: bold;
+  color: #c4c4c4;
+  background-color: #2c333c;
+}
+.tb-gear-list-wrapper .tb-gear-list-body .tb-gear-collection ul.tb-gear-collection-body .tb-gear-collection-header-row > .tb-gear-item-order {
+  font-style: italic;
+}
+.tb-gear-list-wrapper .tb-gear-list-body .tb-gear-collection ul.tb-gear-collection-body .tb-gear-collection-header-row > [class^=tb-gear-item-] {
+  padding: 8px 10px;
+}

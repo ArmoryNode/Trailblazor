@@ -8,7 +8,10 @@ namespace Trailblazor.Infrastructure.Persistence
     public class TrailblazorDbContext : DbContext
     {
         public DbSet<GearList> GearLists { get; set; }
-        public DbSet<GearItem> GearItems { get; set; }
+
+        public TrailblazorDbContext(string connectionString) : base(new DbContextOptionsBuilder<TrailblazorDbContext>().UseCosmos(connectionString, "TrailblazorDb").Options)
+        {
+        }
 
         public TrailblazorDbContext(DbContextOptions<TrailblazorDbContext> options) : base(options)
         {
@@ -18,26 +21,28 @@ namespace Trailblazor.Infrastructure.Persistence
         {
             modelBuilder.Entity<GearList>(builder =>
             {
-                builder.ToContainer("Gear");
-                builder.HasDiscriminator<string>(nameof(GearList));
-            });
+                builder.HasPartitionKey(nameof(GearList.CreatedById))
+                       .ToContainer("Gear")
+                       .HasDiscriminator<string>("Discriminator")
+                       .HasValue(nameof(GearList));
 
-            modelBuilder.Entity<GearItem>(builder =>
-            {
-                builder.ToContainer("Gear");
-                builder.HasDiscriminator<string>(nameof(GearItem));
+                builder.Property(x => x.Id).ToJsonProperty("id");
+
+                builder.HasKey(gl => gl.Identifier);
             });
         }
 
         public override int SaveChanges()
         {
             MarkSoftDeleted();
+            UpdateSearchText();
             return base.SaveChanges();
         }
 
         public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
         {
             MarkSoftDeleted();
+            UpdateSearchText();
             return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
         }
 
@@ -51,6 +56,20 @@ namespace Trailblazor.Infrastructure.Persistence
                 {
                     entry.State = EntityState.Modified; // Mark soft deletable entity for modification, instead of deletion.
                     entry.Entity.DeletedOn = DateTimeOffset.UtcNow; // Set the `DeletedOn` property to the current time.
+                }
+            }
+        }
+
+        private void UpdateSearchText()
+        {
+            // Iterate through tracked entries with type `ISearchable`.
+            foreach (var entry in ChangeTracker.Entries<ISearchable>())
+            {
+                // Only modify entity if it has been added or modified.
+                if (entry.State == EntityState.Added || entry.State == EntityState.Modified)
+                {
+                    // Call method to update the search text.
+                    entry.Entity.UpdateSearchText();
                 }
             }
         }

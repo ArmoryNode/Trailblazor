@@ -1,0 +1,74 @@
+﻿<div class="tb-gear-list-wrapper">
+    <div class="tb-gear-list-body">
+        @foreach (var collection in Model.GearCollections)
+        {
+            <div class="tb-gear-collection">
+                <div class="tb-gear-collection-title">@collection.Name</div>
+                <ul class="tb-gear-collection-body">
+                    <li class="tb-gear-collection-header-row">
+                        <div class="tb-gear-item-order">#</div>
+                        <div class="tb-gear-item-name">Name</div>
+                        <div class="tb-gear-item-description">Description</div>
+                        <div class="tb-gear-item-weight">Weight</div>
+                        <div class="tb-gear-item-quantity">Qty</div>
+                    </li>
+                    @foreach (var item in collection.GearItems)
+                    {
+                        <li class="tb-gear-collection-row">
+                            <div class="tb-gear-item-order">@item.Order</div>
+                            <div class="tb-gear-item-name">@item.Name</div>
+                            <div class="tb-gear-item-description">@item.Description</div>
+                            <div class="tb-gear-item-weight">@item.Weight.ToShortString()</div>
+                            <div class="tb-gear-item-quantity">@item.Quantity</div>
+                        </li>
+                    }
+                    <li class="tb-gear-collection-aggregate-row">
+                        <div class="tb-gear-collection-aggregate-column">
+                            <button class="tb-gear-collection-add" type="button"><i class="fa-solid fa-fw fa-plus"></i>Add Gear Item</button>
+                        </div>
+                        <div class="tb-gear-collection-aggregate-column">
+                            <div class="tb-gear-collection-aggregate-weight">@collection.GearItemTotalWeight.ToShortString()</div>
+                        </div>
+                        <div class="tb-gear-collection-aggregate-column">
+                            <div class="tb-gear-collection-aggregate-quantity">2</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public GearListViewModel Model { get; set; } = new()
+    {
+        Name = "Gear List 1",
+        Description = "Gear List 1 Description",
+        GearCollections = new()
+{
+            new() {
+                Name = "Base",
+                GearItems = new()
+    {
+                    new()
+                    {
+                        Name = "Gear Item 1",
+                        Description = "This is gear item 1",
+                        Weight = new(1, WeightUnit.Pounds),
+                        Order = 1,
+                        Quantity = 1
+                    },
+                    new()
+                    {
+                        Name = "Gear Item 2",
+                        Description = "This is gear item 2",
+                        Weight = new(13, WeightUnit.Ounces),
+                        Order = 2,
+                        Quantity = 5
+                    }
+                }
+            }
+        }
+    };
+}

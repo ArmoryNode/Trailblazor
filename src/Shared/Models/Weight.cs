@@ -1,11 +1,21 @@
-﻿using Trailblazor.Shared.Extensions;
+﻿using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Converters;
+using System.Text.Json.Serialization;
+using Trailblazor.Shared.Extensions;
 
 namespace Trailblazor.Shared.Models
 {
-    public record struct Weight : IEquatable<Weight>
+    [Owned]
+    public record class Weight : IEquatable<Weight>
     {
         public decimal Amount { get; set; } = 0.0m;
+
+        //[JsonConverter(typeof(StringEnumConverter))]
         public WeightUnit Unit { get; init; } = default;
+
+        public Weight()
+        {
+        }
 
         public Weight(decimal amount)
         {
@@ -94,7 +104,7 @@ namespace Trailblazor.Shared.Models
 
         #region [Equality]
 
-        public bool Equals(Weight other) => Amount == other.As(Unit);
+        public virtual bool Equals(Weight? other) => Amount == other?.As(Unit);
 
         #endregion
 
@@ -105,10 +115,10 @@ namespace Trailblazor.Shared.Models
         public override string ToString()
         {
             var name = Amount == 1 || Amount == -1 ? Unit.GetName().TrimEnd('s') : Unit.GetName();
-            return $"{Amount}\u0020{name}";
+            return $"{Math.Round(Amount, 2)}\u0020{name}";
         }
 
-        public string ToShortString() => $"{Amount}{Unit.GetShortName()}";
+        public string ToShortString() => $"{Math.Round(Amount, 1)}\u0020{Unit.GetShortName()}";
 
         #endregion
     }

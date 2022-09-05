@@ -1,0 +1,93 @@
+﻿@import "../../Styles/_all";
+
+$row-base-color: $grey-dark;
+
+.tb-gear-list-wrapper {
+
+    .tb-gear-list-body {
+        @include high-elevation;
+
+        .tb-gear-collection {
+
+            .tb-gear-collection-title {
+                display: inline-block;
+                font-size: 24px;
+                padding: 10px 20px;
+                background-color: darken($row-base-color, 3);
+            }
+
+            ul.tb-gear-collection-body {
+                padding: 0;
+                margin: 0;
+                list-style: none;
+
+                li.tb-gear-collection-row, li.tb-gear-collection-header-row {
+                    background-color: $row-base-color;
+                    display: grid;
+                    grid-template-columns: 40px 200px 1fr 80px 80px;
+
+                    @include transition-for(background-color);
+
+                    &:nth-of-type(even) {
+                        background-color: lighten($row-base-color, 3);
+                    }
+
+                    &:not(.tb-gear-collection-header-row):hover {
+                        background-color: lighten($row-base-color, 4);
+                    }
+
+                    > [class^='tb-gear-item-'] {
+                        padding: 10px;
+                    }
+
+                    > .tb-gear-item-order {
+                        color: darken($white, 35);
+                        font-weight: bold;
+                    }
+
+                    > .tb-gear-item-order,
+                    > .tb-gear-item-weight,
+                    > .tb-gear-item-quantity {
+                        text-align: center;
+                    }
+                }
+
+                li.tb-gear-collection-aggregate-row {
+                    display: grid;
+                    grid-template-columns: 1fr 80px 80px;
+
+                    .tb-gear-collection-aggregate-column {
+                        padding: 10px;
+
+                        .tb-gear-collection-aggregate-weight,
+                        .tb-gear-collection-aggregate-quantity {
+                            font-weight: bold;
+                            text-align: center;
+                        }
+                        
+                        .tb-gear-collection-add {
+                            border: none;
+                            outline: none;
+                            color: inherit;
+                            background-color: transparent;
+                        }
+                    }
+                }
+
+                .tb-gear-collection-header-row {
+                    font-weight: bold;
+                    color: darken($white, 20);
+                    background-color: darken($row-base-color, 3);
+
+                    > .tb-gear-item-order {
+                        font-style: italic;
+                    }
+
+                    > [class^='tb-gear-item-'] {
+                        padding: 8px 10px;
+                    }
+                }
+            }
+        }
+    }
+}
