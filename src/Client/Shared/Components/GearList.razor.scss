@@ -8,6 +8,7 @@ $row-base-color: $grey-dark;
         @include high-elevation;
 
         .tb-gear-collection {
+            margin-bottom: 30px;
 
             .tb-gear-collection-title {
                 display: inline-block;
@@ -16,21 +17,23 @@ $row-base-color: $grey-dark;
                 background-color: darken($row-base-color, 3);
             }
 
-            ul.tb-gear-collection-body {
+            .tb-gear-collection-body {
                 padding: 0;
                 margin: 0;
                 list-style: none;
 
-                li.tb-gear-collection-row, li.tb-gear-collection-header-row {
-                    background-color: $row-base-color;
-                    display: grid;
-                    grid-template-columns: 40px 200px 1fr 80px 80px;
-
-                    @include transition-for(background-color);
-
+                .tb-gear-collection-row {
                     &:nth-of-type(even) {
                         background-color: lighten($row-base-color, 3);
                     }
+                }
+
+                .tb-gear-collection-row, .tb-gear-collection-header-row {
+                    background-color: $row-base-color;
+                    display: grid;
+                    grid-template-columns: 40px 200px 1fr 80px 80px 40px;
+
+                    @include transition-for(background-color);
 
                     &:not(.tb-gear-collection-header-row):hover {
                         background-color: lighten($row-base-color, 4);
@@ -47,14 +50,23 @@ $row-base-color: $grey-dark;
 
                     > .tb-gear-item-order,
                     > .tb-gear-item-weight,
-                    > .tb-gear-item-quantity {
+                    > .tb-gear-item-quantity,
+                    > .tb-gear-item-menu-button {
                         text-align: center;
+                    }
+
+                    > .tb-gear-item-menu-button {
+                        cursor: pointer;
+
+                        > i {
+                            pointer-events: none;
+                        }
                     }
                 }
 
-                li.tb-gear-collection-aggregate-row {
+                .tb-gear-collection-aggregate-row {
                     display: grid;
-                    grid-template-columns: 1fr 80px 80px;
+                    grid-template-columns: 1fr 80px 80px 40px;
 
                     .tb-gear-collection-aggregate-column {
                         padding: 10px;
@@ -64,7 +76,7 @@ $row-base-color: $grey-dark;
                             font-weight: bold;
                             text-align: center;
                         }
-                        
+
                         .tb-gear-collection-add {
                             border: none;
                             outline: none;

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace Trailblazor.Shared.Models
@@ -6,6 +7,9 @@ namespace Trailblazor.Shared.Models
     [Owned]
     public record GearItem
     {
+        [NotMapped]
+        public readonly Guid UUID = Guid.NewGuid();
+
         public string Name { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
 
@@ -17,8 +21,8 @@ namespace Trailblazor.Shared.Models
 
         public string Link { get; set; } = string.Empty;
 
-        public int Order { get; init; } = 1;
+        public int Order { get; set; } = 1;
 
-        public int Quantity { get; init; } = 1;
+        public int Quantity { get; set; } = 1;
     }
 }

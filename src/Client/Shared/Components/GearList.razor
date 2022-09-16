@@ -4,27 +4,45 @@
         {
             <div class="tb-gear-collection">
                 <div class="tb-gear-collection-title">@collection.Name</div>
-                <ul class="tb-gear-collection-body">
-                    <li class="tb-gear-collection-header-row">
+                <div class="tb-gear-collection-body">
+                    <div class="tb-gear-collection-header-row">
                         <div class="tb-gear-item-order">#</div>
                         <div class="tb-gear-item-name">Name</div>
                         <div class="tb-gear-item-description">Description</div>
                         <div class="tb-gear-item-weight">Weight</div>
                         <div class="tb-gear-item-quantity">Qty</div>
-                    </li>
+                        <div class="tb-gear-item-menu-button"></div>
+                    </div>
                     @foreach (var item in collection.GearItems)
                     {
-                        <li class="tb-gear-collection-row">
+                        var contextMenuTargetElementId = $"context-menu-target_{item.UUID}";
+
+                        <ContextMenu @ref="SetContextMenu" @key="item">
+                            <ContextMenuAction Action="async (contextMenu) => { await CloseContextMenu(contextMenu); }">
+                                <span><i class="fa-duotone fa-fw fa-pen"></i>&nbsp;Edit</span>
+                            </ContextMenuAction>
+                            <ContextMenuAction Action="async (contextMenu) => { RemoveGearItem(collection, item); await CloseAndDisposeContextMenu(item.UUID, contextMenu); }">
+                                <span><i class="fa-duotone fa-fw fa-trash-xmark"></i>&nbsp;Delete</span>
+                            </ContextMenuAction>
+                        </ContextMenu>
+
+                        <div class="tb-gear-collection-row">
                             <div class="tb-gear-item-order">@item.Order</div>
                             <div class="tb-gear-item-name">@item.Name</div>
                             <div class="tb-gear-item-description">@item.Description</div>
                             <div class="tb-gear-item-weight">@item.Weight.ToShortString()</div>
                             <div class="tb-gear-item-quantity">@item.Quantity</div>
-                        </li>
+                            <div id="@contextMenuTargetElementId"
+                                 class="tb-gear-item-menu-button"
+                                 @onmousedown="(args) => OpenContextMenu(_contextMenus[item.UUID], contextMenuTargetElementId, args)"
+                                 @onmousedown:preventDefault="true">
+                                <i class="fa-thin fa-fw fa-bars"></i>
+                            </div>
+                        </div>
                     }
-                    <li class="tb-gear-collection-aggregate-row">
+                    <div class="tb-gear-collection-aggregate-row">
                         <div class="tb-gear-collection-aggregate-column">
-                            <button class="tb-gear-collection-add" type="button"><i class="fa-solid fa-fw fa-plus"></i>Add Gear Item</button>
+                            <button class="tb-gear-collection-add" type="button" @onclick="() => AddGearItem(collection)"><i class="fa-solid fa-fw fa-plus"></i>&nbsp;Add Gear Item</button>
                         </div>
                         <div class="tb-gear-collection-aggregate-column">
                             <div class="tb-gear-collection-aggregate-weight">@collection.GearItemTotalWeight.ToShortString()</div>
@@ -32,8 +50,8 @@
                         <div class="tb-gear-collection-aggregate-column">
                             <div class="tb-gear-collection-aggregate-quantity">2</div>
                         </div>
-                    </li>
-                </ul>
+                    </div>
+                </div>
             </div>
         }
     </div>
@@ -50,7 +68,7 @@
             new() {
                 Name = "Base",
                 GearItems = new()
-    {
+{
                     new()
                     {
                         Name = "Gear Item 1",
@@ -68,7 +86,95 @@
                         Quantity = 5
                     }
                 }
+            },
+            new()
+            {
+                Name = "New Collection",
+                GearItems = new()
+{
+                    new()
+                    {
+                        Name = "Other Gear Item",
+                        Description = "this is another gear item",
+                        Weight = new(20, WeightUnit.Ounces),
+                        Order = 1,
+                        Quantity = 3
+                    },
+                    new()
+                    {
+                        Name = "Foo",
+                        Description = "Bar",
+                        Weight = new(15, WeightUnit.Grams),
+                        Order = 2,
+                        Quantity = 3
+                    }
+                }
             }
         }
     };
+
+    public void AddGearItem(GearCollection collection)
+    {
+        var newOrder = 1;
+        if (collection.GearItems.Count > 0)
+            newOrder = collection.GearItems.Max(i => i.Order) + 1;
+
+        collection.GearItems.Add(new()
+        {
+            Name = "New Item",
+            Description = "New Item Description",
+            Weight = new(2, WeightUnit.Kilograms),
+            Order = newOrder
+        });
+
+        StateHasChanged();
+    }
+
+    public void RemoveGearItem(GearCollection gearCollection, GearItem gearItem)
+    {
+        gearCollection.GearItems.Remove(gearItem);
+        StateHasChanged();
+    }
+
+    private Dictionary<Guid, ContextMenu> _contextMenus = new();
+
+    private ContextMenu ContextMenu
+    {
+        set => _contextMenus.Add(value.UUID, value);
+    }
+
+    private void SetContextMenu(ContextMenu contextMenu)
+    {
+        _contextMenus.Add(contextMenu.UUID, contextMenu);
+    }
+
+    public async Task OpenContextMenu(ContextMenu contextMenu, string targetElementId, MouseEventArgs args)
+    {
+        // Only execute method if the mouse input was a left click.
+        // We're using the "mousedown" event instead of "click" because we want to prevent the blur event from occuring
+        // before we close the menu. This is to prevent the menu from closing and opening every time we click the element.
+        if (args.Button != 0)
+            return;
+
+        if (contextMenu.IsOpen)
+        {
+            await contextMenu.CloseMenu();
+        }
+        else
+        {
+            await contextMenu.OpenMenu();
+            await contextMenu.MoveToTarget(targetElementId);
+        }
+    }
+
+    public async Task CloseContextMenu(ContextMenu contextMenu)
+    {
+        await contextMenu.CloseMenu();
+    }
+
+    public async Task CloseAndDisposeContextMenu(Guid UUID, ContextMenu contextMenu)
+    {
+        await contextMenu.CloseMenu();
+        _contextMenus.Remove(UUID);
+    }
 }

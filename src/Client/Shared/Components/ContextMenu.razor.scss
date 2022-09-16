@@ -1,0 +1,42 @@
+﻿@import "../../Styles/_all";
+
+$menu-item-height: 45px;
+$menu-border-radius: 5px;
+$menu-max-height: 2;
+
+.tb-context-menu {
+    position: fixed;
+    width: 180px;
+    max-height: 0;
+    height: 200px;
+    background-color: lighten($grey-dark, 5);
+    overflow: hidden;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-radius: $menu-border-radius;
+
+    &:focus {
+        outline: none;
+    }
+
+    &.open {
+        max-height: $menu-item-height * $menu-max-height;
+        @include transition-for(max-height);
+    }
+
+    .tb-context-menu-action {
+        display: flex;
+        height: $menu-item-height;
+        padding: 10px 15px;
+        align-items: center;
+        background-color: lighten($grey-dark, 8);
+        cursor: pointer;
+
+        @include transition-for(background-color);
+
+        &:hover {
+            background-color: lighten($grey-dark, 10);
+        }
+    }
+}
