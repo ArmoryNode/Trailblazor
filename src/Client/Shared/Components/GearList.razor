@@ -17,7 +17,7 @@
                     {
                         var contextMenuTargetElementId = $"context-menu-target_{item.UUID}";
 
-                        <ContextMenu @ref="SetContextMenu" @key="item">
+                        <ContextMenu @ref="_contextMenus[item.UUID]" @key="item">
                             <ContextMenuAction Action="async (contextMenu) => { await CloseContextMenu(contextMenu); }">
                                 <span><i class="fa-duotone fa-fw fa-pen"></i>&nbsp;Edit</span>
                             </ContextMenuAction>
@@ -137,16 +137,6 @@
     }
 
     private Dictionary<Guid, ContextMenu> _contextMenus = new();
-
-    private ContextMenu ContextMenu
-    {
-        set => _contextMenus.Add(value.UUID, value);
-    }
-
-    private void SetContextMenu(ContextMenu contextMenu)
-    {
-        _contextMenus.Add(contextMenu.UUID, contextMenu);
-    }
 
     public async Task OpenContextMenu(ContextMenu contextMenu, string targetElementId, MouseEventArgs args)
     {
