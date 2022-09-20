@@ -14,7 +14,7 @@
   outline: none;
 }
 .tb-context-menu.open {
-  max-height: 90px;
+  max-height: calc(45px * var(--menu-item-count));
   transition-timing-function: ease;
   transition-duration: 0.3s;
   transition-property: max-height;

@@ -2,7 +2,6 @@
 
 $menu-item-height: 45px;
 $menu-border-radius: 5px;
-$menu-max-height: 2;
 
 .tb-context-menu {
     position: fixed;
@@ -21,7 +20,7 @@ $menu-max-height: 2;
     }
 
     &.open {
-        max-height: $menu-item-height * $menu-max-height;
+        max-height: calc($menu-item-height * var(--menu-item-count));
         @include transition-for(max-height);
     }
 

@@ -6,7 +6,13 @@
     @ChildContent
 </CascadingValue>
 
-<menu tabindex="0" @ref="_elementRef" id="@ElementId" class="@ClassBuilder.Build" @onblur="CloseMenu" @onfocus="OpenMenu">
+<menu tabindex="0"
+      id="@ElementId"
+      class="@ClassBuilder.Build"
+      style="--menu-item-count: @Actions.Count"
+      @ref="_elementRef"
+      @onblur="CloseMenu"
+      @onfocus="OpenMenu">
     @foreach (var action in Actions)
     {
         <li class="tb-context-menu-action" @onclick="() => action.Action.Invoke(this)">
