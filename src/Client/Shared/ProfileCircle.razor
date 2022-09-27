@@ -8,20 +8,27 @@
 @inherits ComponentBase
 
 <div class="profile-container">
-    <div class="profile-circle">
+    <div id="profileMenu" class="profile-circle" @onmousedown="OpenProfileMenu" @onmousedown:preventDefault="true">
         <AuthorizeView>
             <Authorized>
                 <img alt="profile image" src="@User.Image()" title="@User.UserName()" />
             </Authorized>
             <NotAuthorized>
-                @*<img alt="placeholder profile image" src="/img/unauthenticated.svg" />*@
                 <svg alt="placeholder profile image"></svg>
             </NotAuthorized>
         </AuthorizeView>
     </div>
+
+    <ContextMenu @ref="_contextMenu">
+        <ContextMenuAction>
+            <span><i class="fa-duotone fa-fw fa-sliders me-2" aria-hidden="true"></i>&nbsp;Settings</span>
+        </ContextMenuAction>
+    </ContextMenu>
 </div>
 
 @code {
+    private ContextMenu _contextMenu = null!;
+
     private ClaimsPrincipal? _user;
     private ClaimsPrincipal? User
     {
@@ -37,6 +44,25 @@
         => User = (await authenticationStateTask).User;
 
     private bool HasImageClaim => User is ClaimsPrincipal user && user.Identity is IIdentity identity && !string.IsNullOrWhiteSpace(user.Image());
+
+    private async Task OpenProfileMenu(MouseEventArgs args)
+    {
+        // Only execute method if the mouse input was a left click.
+        // We're using the "mousedown" event instead of "click" because we want to prevent the blur event from occuring
+        // before we close the menu. This is to prevent the menu from closing and opening every time we click the element.
+        if (args.Button != 0)
+            return;
+
+        if (_contextMenu.IsOpen)
+        {
+            await _contextMenu.CloseMenu();
+        }
+        else
+        {
+            await _contextMenu.OpenMenu();
+            await _contextMenu.MoveToTarget("profileMenu");
+        }
+    }
 
     protected override async Task OnInitializedAsync()
     {

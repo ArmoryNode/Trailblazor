@@ -8,7 +8,7 @@
     <div class="align-self-center">
         <ApexChart @ref="WeightChart"
                    TItem="GearCollection"
-                   Title="Categories"
+                   Title="Total Weight"
                    Width="500"
                    Options="DefaultChartOptions">
             <ApexPointTooltip>
@@ -107,22 +107,11 @@
         {
             Colors = new() { "var(--grey-dark)" },
             Width = 3
-        },
-        Chart = new()
-        {
-            Animations = new()
-            {
-                DynamicAnimation = new()
-                {
-                    Enabled = false,
-                    Speed = .5
-                }
-            }
         }
     };
 
     protected override void OnAfterRender(bool firstRender)
     {
-        GearList.GearListChanged += async (_, _) => await WeightChart.RenderAsync();
+        GearList.GearListChanged += async (_, _) => await WeightChart.UpdateSeriesAsync();
     }
 }

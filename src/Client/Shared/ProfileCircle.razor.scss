@@ -13,11 +13,14 @@
         overflow: hidden;
         cursor: pointer;
 
+        > img, > svg {
+            width: inherit;
+            height: inherit;
+        }
+
         > svg {
             background-image: url(/img/unauthenticated.svg);
             background-position: center;
-            width: inherit;
-            height: inherit;
         }
     }
 }
