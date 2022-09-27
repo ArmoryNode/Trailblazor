@@ -1,1 +1,9 @@
-﻿
+﻿#{'::deep'} {
+    .tb-gear-list-wrapper {
+        margin-top: 20px;
+    }
+
+    .apexcharts-svg {
+        background-color: transparent !important;
+    }
+}

@@ -46,6 +46,9 @@ namespace Trailblazor.Domain.Entities.Gear
 
             if (!GearCollections.SequenceEqual(viewModel.GearCollections))
                 GearCollections = viewModel.GearCollections;
+
+            if (PreferredUnit != viewModel.PreferredUnit)
+                PreferredUnit = viewModel.PreferredUnit;
         }
 
         public void UpdateSearchText()

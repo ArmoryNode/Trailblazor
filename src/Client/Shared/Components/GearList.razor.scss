@@ -31,7 +31,7 @@ $row-base-color: $grey-dark;
                 .tb-gear-collection-row, .tb-gear-collection-header-row {
                     background-color: $row-base-color;
                     display: grid;
-                    grid-template-columns: 40px 200px 1fr 80px 80px 40px;
+                    grid-template-columns: 40px 200px 1fr 100px 80px 40px;
 
                     @include transition-for(background-color);
 
@@ -66,7 +66,7 @@ $row-base-color: $grey-dark;
 
                 .tb-gear-collection-aggregate-row {
                     display: grid;
-                    grid-template-columns: 1fr 80px 80px 40px;
+                    grid-template-columns: 1fr 100px 80px 40px;
 
                     .tb-gear-collection-aggregate-column {
                         padding: 10px;

@@ -22,7 +22,7 @@
 .tb-gear-list-wrapper .tb-gear-list-body .tb-gear-collection .tb-gear-collection-body .tb-gear-collection-row, .tb-gear-list-wrapper .tb-gear-list-body .tb-gear-collection .tb-gear-collection-body .tb-gear-collection-header-row {
   background-color: #333b45;
   display: grid;
-  grid-template-columns: 40px 200px 1fr 80px 80px 40px;
+  grid-template-columns: 40px 200px 1fr 100px 80px 40px;
   transition-timing-function: ease;
   transition-duration: 0.3s;
   transition-property: background-color;
@@ -54,7 +54,7 @@
 }
 .tb-gear-list-wrapper .tb-gear-list-body .tb-gear-collection .tb-gear-collection-body .tb-gear-collection-aggregate-row {
   display: grid;
-  grid-template-columns: 1fr 80px 80px 40px;
+  grid-template-columns: 1fr 100px 80px 40px;
 }
 .tb-gear-list-wrapper .tb-gear-list-body .tb-gear-collection .tb-gear-collection-body .tb-gear-collection-aggregate-row .tb-gear-collection-aggregate-column {
   padding: 10px;

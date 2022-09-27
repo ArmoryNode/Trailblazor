@@ -12,6 +12,8 @@ namespace Trailblazor.Shared.ViewModels
         public int Order { get; set; }
         public bool Favorite { get; set; }
 
+        public WeightUnit PreferredUnit { get; set; } = WeightUnit.Pounds;
+
         public List<GearCollection> GearCollections { get; set; } = new();
     }
 }

@@ -19,10 +19,10 @@
 
                         <ContextMenu @ref="_contextMenus[item.UUID]" @key="item">
                             <ContextMenuAction Action="async (contextMenu) => { await CloseContextMenu(contextMenu); }">
-                                <span><i class="fa-duotone fa-fw fa-pen"></i>&nbsp;Edit</span>
+                                <span><i class="fa-solid fa-fw fa-pen text-success me-2" aria-hidden="true"></i>&nbsp;Edit</span>
                             </ContextMenuAction>
                             <ContextMenuAction Action="async (contextMenu) => { RemoveGearItem(collection, item); await CloseAndDisposeContextMenu(item.UUID, contextMenu); }">
-                                <span><i class="fa-duotone fa-fw fa-trash-xmark"></i>&nbsp;Delete</span>
+                                <span><i class="fa-solid fa-fw fa-trash-xmark text-danger me-2" aria-hidden="true"></i>&nbsp;Delete</span>
                             </ContextMenuAction>
                         </ContextMenu>
 
@@ -58,60 +58,10 @@
 </div>
 
 @code {
+    public event EventHandler GearListChanged = delegate { };
+
     [Parameter]
-    public GearListViewModel Model { get; set; } = new()
-    {
-        Name = "Gear List 1",
-        Description = "Gear List 1 Description",
-        GearCollections = new()
-{
-            new() {
-                Name = "Base",
-                GearItems = new()
-{
-                    new()
-                    {
-                        Name = "Gear Item 1",
-                        Description = "This is gear item 1",
-                        Weight = new(1, WeightUnit.Pounds),
-                        Order = 1,
-                        Quantity = 1
-                    },
-                    new()
-                    {
-                        Name = "Gear Item 2",
-                        Description = "This is gear item 2",
-                        Weight = new(13, WeightUnit.Ounces),
-                        Order = 2,
-                        Quantity = 5
-                    }
-                }
-            },
-            new()
-            {
-                Name = "New Collection",
-                GearItems = new()
-{
-                    new()
-                    {
-                        Name = "Other Gear Item",
-                        Description = "this is another gear item",
-                        Weight = new(20, WeightUnit.Ounces),
-                        Order = 1,
-                        Quantity = 3
-                    },
-                    new()
-                    {
-                        Name = "Foo",
-                        Description = "Bar",
-                        Weight = new(15, WeightUnit.Grams),
-                        Order = 2,
-                        Quantity = 3
-                    }
-                }
-            }
-        }
-    };
+    public GearListViewModel Model { get; set; } = null!;
 
     public void AddGearItem(GearCollection collection)
     {
@@ -128,12 +78,14 @@
         });
 
         StateHasChanged();
+        GearListChanged.Invoke(this, new());
     }
 
     public void RemoveGearItem(GearCollection gearCollection, GearItem gearItem)
     {
         gearCollection.GearItems.Remove(gearItem);
         StateHasChanged();
+        GearListChanged.Invoke(this, new());
     }
 
     private Dictionary<Guid, ContextMenu> _contextMenus = new();

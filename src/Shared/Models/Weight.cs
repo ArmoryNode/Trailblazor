@@ -118,7 +118,7 @@ namespace Trailblazor.Shared.Models
             return $"{Math.Round(Amount, 2)}\u0020{name}";
         }
 
-        public string ToShortString() => $"{Math.Round(Amount, 1)}\u0020{Unit.GetShortName()}";
+        public string ToShortString() => $"{Math.Round(Amount, 2)}\u0020{Unit.GetShortName()}";
 
         #endregion
     }

@@ -14,7 +14,8 @@
                 <img alt="profile image" src="@User.Image()" title="@User.UserName()" />
             </Authorized>
             <NotAuthorized>
-                <img alt="placeholder profile image" src="/img/unauthenticated.svg" />
+                @*<img alt="placeholder profile image" src="/img/unauthenticated.svg" />*@
+                <svg alt="placeholder profile image"></svg>
             </NotAuthorized>
         </AuthorizeView>
     </div>

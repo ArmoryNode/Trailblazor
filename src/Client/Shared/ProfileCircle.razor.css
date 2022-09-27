@@ -13,7 +13,9 @@
   overflow: hidden;
   cursor: pointer;
 }
-.profile-container .profile-circle > img {
+.profile-container .profile-circle > svg {
+  background-image: url(/img/unauthenticated.svg);
+  background-position: center;
   width: inherit;
   height: inherit;
 }
